@@ -1,6 +1,0 @@
-{
-  "name": "KaloriKu - Personal Calorie & Macro Tracker",
-  "description": "Aplikasi pelacak kalori dan makronutrisi offline-first untuk Android dengan database makanan pribadi, quick log pintar, dan kalkulator nutrisi lengkap.",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
-}
