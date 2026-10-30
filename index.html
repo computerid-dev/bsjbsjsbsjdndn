@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="id" class="dark bg-[#0b0f19]">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title>KaloriKu - Personal Calorie &amp; Macro Tracker</title>
+    <meta name="description" content="Aplikasi pelacak kalori dan makronutrisi offline-first untuk Android dengan database makanan pribadi, quick log pintar, dan kalkulator nutrisi lengkap." />
+    <meta property="og:title" content="KaloriKu - Personal Calorie &amp; Macro Tracker" />
+    <meta property="og:description" content="Aplikasi pelacak kalori dan makronutrisi offline-first untuk Android dengan database makanan pribadi, quick log pintar, dan kalkulator nutrisi lengkap." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#0b0f19" />
+    <meta name="background-color" content="#0b0f19" />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <style>
+      html, body {
+        background-color: #0b0f19;
+        color: #f8fafc;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        -webkit-tap-highlight-color: transparent;
+      }
+      #kaloriku-fallback-loader {
+        position: fixed;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background-color: #0b0f19;
+        color: #94a3b8;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        z-index: 9999;
+      }
+      .kaloriku-pulse-icon {
+        width: 72px;
+        height: 72px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(16, 185, 129, 0.2);
+        animation: kaloriku-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      }
+      @keyframes kaloriku-pulse {
+        0%, 100% { transform: scale(1); opacity: 1; }
+        50% { transform: scale(0.96); opacity: 0.85; }
+      }
+      .kaloriku-spinner {
+        width: 24px;
+        height: 24px;
+        border: 2.5px solid rgba(148, 163, 184, 0.2);
+        border-top-color: #10b981;
+        border-radius: 50%;
+        animation: kaloriku-spin 0.8s linear infinite;
+      }
+      @keyframes kaloriku-spin {
+        to { transform: rotate(360deg); }
+      }
+    </style>
+  </head>
+  <body class="overflow-hidden overscroll-none select-none">
+    <div id="root" data-kaloriku-shell="true">
+      <div id="kaloriku-fallback-loader">
+        <img src="/icon.svg" alt="KaloriKu" class="kaloriku-pulse-icon" width="72" height="72" />
+        <div style="margin-top: 20px; font-weight: 700; font-size: 20px; letter-spacing: -0.02em; color: #f8fafc;">
+          Kalori<span style="color: #10b981;">Ku</span>
+        </div>
+        <div style="margin-top: 14px; display: flex; align-items: center; gap: 10px; font-size: 13px; color: #64748b;">
+          <div class="kaloriku-spinner"></div>
+          <span>Membuka aplikasi...</span>
+        </div>
+        <button
+          id="kaloriku-force-reload-btn"
+          onclick="window.__kalorikuRecover()"
+          style="display: none; margin-top: 24px; padding: 10px 20px; border-radius: 12px; background: #10b981; color: #0b0f19; border: none; font-size: 13px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 12px rgba(16,185,129,0.3);"
+        >
+          Muat Ulang Aplikasi
+        </button>
+      </div>
+      <script>
+        window.__kalorikuRecover = function() {
+          window.location.reload();
+        };
+        setTimeout(function() {
+          var btn = document.getElementById('kaloriku-force-reload-btn');
+          if (btn) btn.style.display = 'inline-block';
+        }, 2500);
+      </script>
+    </div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
