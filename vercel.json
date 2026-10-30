@@ -1,8 +1,0 @@
-{
-  "functions": {
-    "api/scan-photo.ts": { "maxDuration": 30 }
-  },
-  "rewrites": [
-    { "source": "/((?!assets/|api/).*)", "destination": "/index.html" }
-  ]
-}
